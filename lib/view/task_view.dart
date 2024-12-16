@@ -79,7 +79,6 @@ class TaskViewState extends State<TaskView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Task App"),
-        leading: const Icon(Icons.safety_check),
         backgroundColor: const Color.fromARGB(102, 94, 115, 234),
       ),
       body: Padding(
@@ -94,10 +93,11 @@ class TaskViewState extends State<TaskView> {
                         final task = tasks.getTasks()[index];
                         return (Card(
                           child: ListTile(
-                            title: Text(task.title),
-                            subtitle: Text(task.description),
-                            trailing: const Icon(Icons.check),
-                          ),
+                              title: Text(task.title),
+                              subtitle: Text(task.description),
+                              trailing: IconButton(
+                                  onPressed: () => tasks.removeTask(index),
+                                  icon: const Icon(Icons.delete))),
                         ));
                       })),
               FloatingActionButton(
