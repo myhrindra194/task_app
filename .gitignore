@@ -45,7 +45,7 @@ android/
 ios/
 linux/
 mac/
-windows/
+/windows/
 web/
 build/
 macos/
