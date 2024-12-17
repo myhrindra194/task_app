@@ -77,7 +77,7 @@ class TaskViewState extends State<TaskView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Task App"),
-        backgroundColor: const Color.fromARGB(102, 94, 115, 234),
+        backgroundColor: const Color.fromARGB(102, 7, 157, 232),
       ),
       body: Padding(
           padding: const EdgeInsets.all(16),
