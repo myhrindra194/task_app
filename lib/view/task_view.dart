@@ -39,15 +39,14 @@ class TaskViewState extends State<TaskView> {
               content: const Text('All fields are required'),
               actions: <Widget>[
                 TextField(
-                  controller: _titleController, // Premier champ de saisie
+                  controller: _titleController,
                   decoration: const InputDecoration(
                     labelText: 'Title',
                   ),
                 ),
                 const SizedBox(height: 20),
                 TextField(
-                  controller:
-                      _descriptionController, // Deuxième champ de saisie
+                  controller: _descriptionController,
                   decoration: const InputDecoration(
                     labelText: 'Description',
                   ),
@@ -61,8 +60,7 @@ class TaskViewState extends State<TaskView> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context)
-                            .pop(); // Close the dialog when pressed
+                        Navigator.of(context).pop();
                       },
                       child: const Text('Close'),
                     ),
@@ -93,11 +91,35 @@ class TaskViewState extends State<TaskView> {
                         final task = tasks.getTasks()[index];
                         return (Card(
                           child: ListTile(
-                              title: Text(task.title),
+                              title: Text(
+                                task.title,
+                                style: TextStyle(
+                                  decoration: task.isCompleted
+                                      ? TextDecoration.lineThrough
+                                      : TextDecoration.none,
+                                  decorationThickness: 2,
+                                ),
+                              ),
                               subtitle: Text(task.description),
-                              trailing: IconButton(
-                                  onPressed: () => tasks.removeTask(index),
-                                  icon: const Icon(Icons.delete))),
+                              trailing: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  IconButton(
+                                      onPressed: () => tasks.removeTask(index),
+                                      icon: const Icon(Icons.delete)),
+                                  IconButton(
+                                      onPressed: () =>
+                                          tasks.toggleTaskStatus(index),
+                                      icon: Icon(
+                                        task.isCompleted
+                                            ? Icons.check_circle
+                                            : Icons.check_circle_outline,
+                                        color: task.isCompleted
+                                            ? Colors.green
+                                            : Colors.grey,
+                                      ))
+                                ],
+                              )),
                         ));
                       })),
               FloatingActionButton(
